@@ -1,0 +1,106 @@
+\chapter{Objekte}
+\section{Definition von Klassen}
+\begin{lstlisting}
+class MeineKlasse():
+    pass
+\end{lstlisting}
+\section{Attribute}
+Klassen können Variablen definieren. Diese werden als Attribute bezeichnet. Im Gegensatz zu normalen Variablen werden Attribute immer mit Referenz auf das aktuelle Objekt angesprochen (\texttt{self}). Auf Attribute und Methoden kann von außen immer zugegriffen werden. Attribute können sogar dynamisch dem Objekt hinzugefügt oder entfernt werden.
+\begin{lstlisting}
+class MeineKlasse():
+    def setvalue(self, v):
+        self.value = v
+    def getvalue(self):
+        return self.value
+\end{lstlisting}
+\section{Methoden}
+\begin{lstlisting}
+class MeineKlasse():
+    def func(self):
+        pass
+\end{lstlisting}
+\section{Von der Klasse zum Objekt}
+\begin{lstlisting}
+object = MeineKlasse()
+object.setvalue(42)
+\end{lstlisting}
+\subsection{Konstruktor}
+\begin{lstlisting}
+class MeineKlasse():
+    def __init__(self, v):
+        self.v = v
+        
+object = MeineKlasse(42)
+\end{lstlisting}
+\subsection{Überladen von Funktionen}
+Ein Überladen von Funktionen mit mehreren Paramatern ist grundsätzlich möglich. Allerdings ermöglicht Python nur die Nutzung der letzten Definition der Funktion.
+\subsection{Klassenvariablen}
+Eine Klassenvariable ist eine Variable, die von allen Objekten einer Klasse geteilt wird. Die Klassenvariable wird, im Gegensatz zu Objektvariablen, ohne das Präfix \texttt{self} definiert. Soll innerhalb eines Objektes auf die Klassenvariable zugegriffen werden, geschieht dies über die Klasse eines existierenden Objektes.
+\begin{lstlisting}
+class MeineKlasse():
+    classvar = 42
+    
+    def __init__(self, v):
+        self.v = v
+        
+    def func():
+        type(self).classvar =  3   
+\end{lstlisting}
+\subsubsection{Typ der Klassenvariable}
+Bei der Nutzung von Klassenvariablen muss darauf geachtet werden, ob diese veränderbar sind (list, dict) oder nicht (tuple, str). Nicht änderbare Typen werden bei einer Zuweisung als neue Variable im betreffenden Objekt angelegt und die Referenz im Namen gespeichert.
+\section{Vererbung}
+\subsection{Einfache Vererbung}
+\begin{lstlisting}
+class Punkt:
+ 
+    def __init__(self, x=0, y=0):
+       self.x = x
+       self.y = y
+
+    def getX(self):
+        return self.x
+   
+    def getY(self):
+        return self.y
+        
+class Ort(Punkt):
+    def __init__(self, x, y, name):
+        super(Ort, self).__init__(x,y)
+        self.name = name
+        
+    def getName(self):
+        return self.name
+\end{lstlisting}
+\begin{tabular}{ll}
+\textbf{Funktion}		&\textbf{Beschreibung}\\
+\texttt{type(objekt)}					&Liefert den Typ des Objekts o\\
+\texttt{isinstance(objekt, klasse)}		&Liefert True, wenn objekt ein Exemplar von Klasse\\
+\texttt{issubclass(klasse, vklasse)}		&Liefert True, wenn klasse eine Subklasse von vklasse\\
+\end{tabular}
+\subsection{Von eingebauten Klassen erben}
+\begin{lstlisting}
+class MDict(dict):
+    def __init__(self):
+        super(MDict, self).__init__()
+\end{lstlisting}
+\subsection{Mehrfachvererbung}
+\begin{lstlisting}
+class A:
+    def m(self):
+        print(``A.m()'')
+
+class B:
+    def m(self):
+        print(``B.m()'')
+
+class C(A,B):
+    pass
+    
+c = C();
+c.m()
+#A.m(), wegen Suchreihenfolge (1. Auftauchen)
+\end{lstlisting}
+
+
+
+

@@ -1,0 +1,114 @@
+\chapter{Ein- und Ausgabe}
+\section{Eingabe \texttt{input()}}
+Einfachste Form mit Einlesen von der Tastatur mit dem Befehl \texttt{input()}. Beendet wird das Einlesen durch:
+\begin{itemize}
+\item Return oder Enter
+\item \texttt{Ctrl + C}
+\item \texttt{Ctrl + D}
+\end{itemize}
+\begin{lstlisting}
+s = input('Eingabe: \n')
+\end{lstlisting}
+\section{Ausgabe \texttt{print()}}
+Gegenstück zu \texttt{input()}. Nimmt beliebig viele Parameter entgegen und fügt am Ende das Newline Zeichen ein.
+\subsection{Formatierung}
+Ausgabeformatierung mithilfe der Methode \texttt{format()}. Platzhalter werden durch die übergebenen Werte/Variablen ersetzt. Variablen können auch über ihren Index oder Namen angesprochen werden\\[0.5em]
+\begin{tabular}{ll}
+\textbf{Platzhalter}	&\textbf{Funktion}\\
+\{\}			&Universeller Platzhalter\\
+\{ name \}		&Variable mit Namen \texttt{name} hier einsetzen\\
+\{ :5 \}		&Feld 5 Zeichen breit formatieren\\
+\{ n:5 \}		&Variable 5 Zeichen breit einfügen\\
+\{ :10b \}		&Feld 10 Zeichen breit und Binärdarstellung\\
+d			&Dezimaldarstellung\\
+f			&Fließkommazahl (6 Nachkommastellen)\\
+.2f			&2 Nachkommastellen\\
+b			&Binärdarstellung\\
+x,X 			&Hexadezimaldarstellung mit kleinen oder großen Buchstaben\\
+!a 			&Funktion \texttt{ascii() auf Variable anwenden}\\
+!s			&Einsatz von \texttt{str()}\\
+!r			&Einsatz von \texttt{repr()}\\
+\end{tabular}
+\\[0.5em]
+\begin{lstlisting}
+'p2 {1:10} p1 {0:04X} k2 {key2} k1 {key1}'.format(42, 3.15, key1='a', key2='b')
+#p2       3.15 p1 002A k2 b k1 a
+\end{lstlisting}
+\subsubsection{Formatierung mit \texttt{str}-Methoden}
+\begin{tabular}{lp{9,5cm}}
+\textbf{Methode}				&\textbf{Beschreibung}\\
+\texttt{ljust(w)}					&Text links ausgeben, Zeichenkette der Länge w\\
+\texttt{rjust(w)}					&Text rechts ausgeben , Zeichenkette der Länge w\\
+\texttt{zfill(w)}					&Zeichenkette der Breite w links mit 0 füllen\\
+\texttt{center(w[, fillchar])}		&Text in de Mitte einer Zeichenkette der Breite w positionieren und ggf. das Füllzeichen verwenden\\
+\texttt{captialize()}				&Erste Zeichen in Großbuchstaben, der Rest klein\\
+\texttt{lower()}					&Alle Zeichen in Kleinbuchstaben\\
+\texttt{swapcase()}				&Klein- gegen Großbuchstaben und umgekehrt\\
+\texttt{title()}					&Erster Buchstabe jedes Wortes in Großbuchstaben\\			
+\end{tabular}
+\subsection{Formatierung mit Formatstrings}
+Der Formatstring ist eine Zeichenkette mit Steuerzeichen als Platzhalter. Die Variablen werden nach einem \verb+%+ angegeben.\\[0.5em]
+\begin{tabular}{ll}
+\textbf{Platzhalter}	&\textbf{Ausgabe}\\
+\verb+%s+		&Zeichenkette\\
+\verb+%d+		&Ganzzahl\\
+\verb+%x+		&Ganzzahl Hexadezimal Klein\\
+\verb+%X+		&Ganzzahl Hexadezimal Groß\\
+\verb+%o+		&Ganzzahl Oktal\\
+\verb+%f+			&Fließkommazahl\\
+\verb+%2d+		&Anzahl Zeichen\\
+\verb+%02s+		&Anzahl Zeichen mit ggfls. führenden Nullen\\
+\verb+%.2f+		&Beschränkung Nachkommastellen\\
+\verb+%5.2f+		&Gesamtbreite mit Nachkommastellen\\
+\verb+%10s+		&Breite 10 Zeichen rechtsbündig\\
+\verb+%-10s+		&Breite 10 Zeichen linksbündig\\
+\end{tabular}
+\subsection{Ausgabe auf \texttt{stdout} oder \texttt{stderr}}
+Ausgabe mit der \texttt{write()} Methode auf den Standard Ausgabekanal. Der Import der Kanäle erfolgt mit \texttt{sys}.
+\section{Dateien}
+\subsection{Arbeiten mit Dateien}
+Für Textdateien reicht die Angabe des Namens. Bei anderen Dateitypen muss der Modus mit angegeben werden.\\[0.2em]
+\begin{tabular}{ll}
+\textbf{Parameter}	&\textbf{Funktion}\\
+r	&Lesen (Default)\\
+w	&Schreiben (Löscht evtl. vorhandene Datei)\\
+a	&am Ende der Datei anhängen\\
+r+	&Lesen \& Schreiben\\
+b	&angehängt an anderen Modi, öffnet Datei im Binärmodus\\
+\end{tabular}
+\begin{lstlisting}
+fd = open ('foo')
+data = fd.read()
+fd.close
+\end{lstlisting}
+\subsection{Methoden von File-Objekten}
+\begin{tabular}{ll}
+\texttt{read(n)}		&Liest n Bytes aus der Datei\\
+\texttt{readline()}	&Liest eine Zeile inklusive des Zeilenendezeichens\\
+\texttt{readlines()}	&Liefert eine Liste aller Zeilen in der Datei\\
+\texttt{write(s)}		&Schreibt Zeichenkette s in Datei\\
+\texttt{seek(p)}		&Setzt Position des Zeigers auf Position p\\
+\texttt{tell()}		&Liefert die Position des Zeigers\\
+\end{tabular}
+\subsection{Daten in Objekte ausgeben}
+Das Modul \texttt{io} bietet eine String-Klasse, die wie ein File-Objekt behandelt werden kann: \texttt{StringIO}. StringIO verhält sich wie eine Datei.
+\subsection{Fehlerbehandlung bei der Arbeit mit Dateien}
+\begin{lstlisting}
+try:
+    file = open{'robots.txt'}
+except (FileNotFoundError, PermissionError) as err:
+    print(''Fehler {}''.format(err))
+    
+try:
+    data = file.read()
+except: ValueError
+    pass
+finally:
+    file.close()
+\end{lstlisting}
+Äquivalent zu obigen Code mit Context Manager:\\[0.5em]
+\begin{lstlisting}
+with open('robots.txt', 'r') as file:
+    f.read()
+\end{lstlisting}
+

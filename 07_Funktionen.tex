@@ -1,0 +1,81 @@
+\chapter{Funktionen}
+\section{Definition \& Aufruf}
+Eingeleitet durch Schlüsselwort \texttt{def}. Parameter sind optional. Der Funktionsname und seine Parameter nennt man Interface oder Signatur. Eine Funktion kann ein Ergebnis an seinen Aufrufer zurückgeben (liefert ansonsten none zurück). Funktionen sind in Python ebenfalls Objekte. Der Funktionsname darf mehrfach im Programmcode, beachtet wird dabei aber nur die letzte Definition. Die Funktion muss vor dem ersten Aufruf bekannt sein. Eine Funktion kann einer Variable zugewiesen werden.
+\begin{lstlisting}
+def funktionsname():
+    pass
+    
+f = funktionsname
+\end{lstlisting}
+\section{Sichtbarkeit von Variablen}
+Eine Funktion stellt einen neuen Namensraum bereit. Variablen, die übergeben oder hier erstellt werden, werden mit der Beendigung der Funktion gelöscht. Eine lokal definierte Variable überdeckt die globale Definition. Findet der Python-Interpreter im lokalen Namensraum keine Definition der Variable, versucht er diese im globalen Namensraum zu finden. Schreibenden Zugriff auf globale Variablen erhält man mit dem Schlüsselwort \texttt{global}
+\section{Funktionsparameter}
+Die Übergabe von Parametern erfolgt in Python als Referenz, dadurch können veränderbare Objekte durch die Funktion manipuliert werden.
+\subsection{Positionsabhängige Parameter (Positional Parameters}
+Die einfachste Form der Parameterübergabe, auch ``formale Parameter'' genannt. Trennung erfolgt durch Kommata in der Parameterliste. Der Bezeichner der Variablen in der Signatur sind in der Funktion bekannt. Die Funktion muss immer der exakten Anzahl der definierten Parameter aufgerufen werden. Eine Mehrfachdefinition mit unterschiedlichen Parameterlisten ist nicht möglich.
+\begin{lstlisting}
+def func(a, b, c)
+    pass
+\end{lstlisting}
+\subsection{Variable Anzahl von Parametern (Variable Arguments)}
+Falls die Anzahl de Parameter nicht von vorneherein bekannt ist, kann die variable Parameterliste genutzt werden. Falls diese genutzt wird, steht sie hinter den positionsabhängigen Parametern.
+\begin{lstlisting}
+def func(args*)
+    pass
+    
+#Sequenzobjekt
+def func(list)
+
+#Objekte einer Sequenz
+def func(*list)
+\end{lstlisting}
+\subsection{Keyword Parameter (Keyword Arguments)}
+Mit den benannten Parametern (Keyword Parameter) kann man optionale Parameter realisieren, die beim Aufruf der Funktion einen Namen zugewiesen bekommen und in beliebiger Reihenfolge angegeben werden können. Sie werden in der Funktionsdefinition nach den variablen Parametern aufgeführt. Die Variable nimmt alle bennanten Argumente in ein Dictionary auf.
+\begin{lstlisting}
+def func(**kwargs):
+    for k, v in kwargs.items():
+        print(''%s=%s'' % (k, v))
+        
+func(p1=1, p2=2)
+\end{lstlisting}
+\section{Defaultwerte für Funktionsparameter}
+Parameter muss nur angegeben werden, wenn der Wert von der Vorgabe abweichen soll.
+\begin{lstlisting}
+def func(a, b=None):
+    if b:
+        print(''a'', a, ''b'', b)
+    else:
+        print(''a'', a)
+\end{lstlisting}
+\section{Rückgabewert einer Funktion}
+\begin{lstlisting}
+def func():
+    return 42
+
+a = func()
+\end{lstlisting}
+\section{Manipulation von Argumenten}
+Als Parameter übergebene, veränderbare Objekte können in einer Funktion verändert werden. Diese Änderungen sind nach der Rückkehr sichtbar.
+\begin{lstlisting}
+def func(a):
+    a[0] = 0
+\end{lstlisting}
+\section{Dokumentation}
+\begin{lstlisting}
+def func():
+    ''Dokumentation''
+    
+help(func)
+\end{lstlisting}
+\section{Geschachtelte Funktionen}
+Eine Funktion kann lokal in einer Funktion definiert sein. Auch ist es möglich, dass die äußere Funktion die innere Funktion als Rückgabewert liefert (Factory Funktion).
+\begin{lstlisting}
+def outer():
+    def inner(v):
+        return v*v
+    return inner
+    
+a = outer()
+a(2)		#4
+\end{lstlisting}
+

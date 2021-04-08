@@ -1,0 +1,48 @@
+\chapter{Weiterführendes}
+\section{Typ einer Variablen}
+\begin{lstlisting}
+liste = [1, 2, 3]
+type(liste) == list    #true
+\end{lstlisting}
+\section{Attribute eines Objektes}
+\begin{lstlisting}
+#Ausgabe aller Attribute, Methoden des Objektes
+liste = [1, 2, 3]
+dir(liste)
+
+#Testen aus Existenz
+hasattr(liste, '__doc__')
+\end{lstlisting}
+\section{Standardfunktionen implementieren}
+\begin{tabular}{lp{8cm}}
+\textbf{Methodenname}		&\textbf{Einsatzzweck}\\
+\texttt{\_\_init\_\_(self [, ...])}	&Konstruktor\\
+\texttt{\_\_del\_\_(self)}		&Destruktor\\
+\texttt{\_\_repr\_\_(self)}		&Liefert Darstellung des Objekts als String\\
+\texttt{\_\_str\_\_(self)}		&Liefert String\\
+\texttt{\_\_bytes\_\_(self)}		&Byte-String des Objets\\
+\texttt{\_\_format\_\_(self, f)}	&ruft \texttt{format() auf}\\
+\texttt{\_\_hash\_\_(self)}		&ruft \texttt{hash()} auf, sollte nur zusammen mit \texttt{eq()} implementiert werden\\
+\texttt{\_\_bool\_\_(self)}		&bewertet das Ergebnis von \texttt{len()}\\
+\end{tabular}
+\section{Vergleichsoperatoren}
+\begin{tabular}{lp{8cm}}
+\textbf{Methodenname}		&\textbf{Einsatzzweck}\\
+\texttt{\_\_eq\_\_(self, o)}	&equal\\
+\texttt{\_\_gel\_\_(self, o)}		&greater or equal\\
+\texttt{\_\_gt\_\_(self, o)}		&greater\\
+\texttt{\_\_le\_\_(self, o)}		&less or equal\\
+\texttt{\_\_lt\_\_(self, o)}		&less than\\
+\texttt{\_\_ne\_\_(self, o)}		&not equal\\
+\end{tabular}
+\section{Attributzugriif}
+\begin{tabular}{lp{8cm}}
+\textbf{Methodenname}				&\textbf{Einsatzzweck}\\
+\texttt{\_\_getattr\_\_(self, n)}			&Wird aufgerufen, falls Attribut nicht in verfügbaren Namensraum gefunden\\
+\texttt{\_\_getattribute\_\_(self, n)}		&Wird zuerst beim Attributzugriff aufgerufen\\
+\texttt{\_\_setattr\_\_(self, n, v)}			&Wird aufgerufen, wenn einem Attribut ein Wert zugewiesen wird\\
+\texttt{\_\_delattr\_\_(self, n)}			&Wird durch \texttt{del o.n}aufgerufen\\
+\texttt{\_\_dir\_\_(self)}				&Aufruf von \texttt{dir()}\\
+\end{tabular}
+
+

@@ -1,0 +1,36 @@
+\chapter{Allgemeines} 
+\section{Ausführbares Skript}
+Ausführbares Skript und ermöglicht Import in andere Python Programme.
+\begin{lstlisting}
+#!/usr/bin/env python
+\end{lstlisting}
+\section{Kommentare}
+\begin{lstlisting}
+print(``Hello World!'') #Kommentar bis zum Ende der Zeile
+\end{lstlisting}
+\section{Nichts tun}
+Mit der Anweisung \texttt{pass} wird das Programm nichts tun. Die Anweisung kann als Platzhalter für noch zu implementierende Funktionen genutzt werden.
+\section{Funktionen nachladen}
+Module werden in Python mithilfe des Schlüsselwortes \texttt{import} nachgeladen.
+\begin{lstlisting}
+#Ganzes Modul
+import sys
+
+#einzelnes Element eines Moduls
+from sys import stdout
+\end{lstlisting}
+\section{Manpage \& Co.}
+\begin{lstlisting}
+#Dokumention der Funktion
+help(funktionsname)
+
+#globaler Namensraum
+dir()
+
+#Attribute eines Objekts
+dir(variable)
+
+#Typ eines Attributs
+type(variable)
+\end{lstlisting}
+

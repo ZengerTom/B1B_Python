@@ -1,0 +1,82 @@
+\chapter{Matplotlib}
+\section{Line Plot}
+\begin{lstlisting}
+import numpy as np
+import matplotlib . pyplot as plt
+
+x = np.linspace(0, 100, 1000)
+y = np.power(x, 2)
+z = np.power(x, 3)
+
+plt.plot(x,y, 'b-', x, z, 'go')
+
+#limits
+plt.xlim(1, 50)
+plt.ylim(0,5000)
+
+#labels
+plt.xlabel("X-Achse")
+plt.ylabel("Y-Achse")
+plt.title("Graph")
+
+#Legende
+plt.legend(('$x^2$', '$x^3$'))
+
+plt.savefig("fig1.png")
+plt.show()
+\end{lstlisting}
+\section{Scatter Plot}
+\begin{lstlisting}
+import numpy as np
+import matplotlib . pyplot as plt
+
+npoints = 100
+x = np.random.standard_normal(npoints)
+y = np.random.standard_normal(npoints)
+
+plt.scatter(x,y)
+
+plt.savefig("fig1.png")
+plt.show()
+\end{lstlisting}
+\section{Box Plot}
+\begin{lstlisting}
+import numpy as np
+import matplotlib . pyplot as plt
+
+npoints = 100
+x = np.random.standard_normal(npoints)
+
+plt.boxplot(x)
+
+plt.savefig("fig1.png")
+plt.show()
+\end{lstlisting}
+\section{Mehrere Plots}
+Subplot erhält drei Argumente (Reihen, Spalten, Nr. des Subplots)
+\begin{lstlisting}
+import numpy as np
+import matplotlib . pyplot as plt
+
+def f(t):
+    return np.exp(t) * np.cos(2*np.pi*t)
+
+t1 = np.arange(0.0, 5.0, 0.1)
+t2 = np.arange(0.0, 5.0, 0.02)
+
+fig = plt.figure()
+
+axis1 = fig.add_subplot(211)
+plt.plot(t1, f(t1), 'bo', t2, f(t2), 'k')
+axis1.set_title("plot1")
+
+axis2 = fig.add_subplot(212)
+plt.plot(t2, np.cos(2*np.pi*t2), 'r--')
+axis1.set_title("plot2")
+
+plt.savefig("fig1.png")
+plt.show()
+
+\end{lstlisting}
+
+

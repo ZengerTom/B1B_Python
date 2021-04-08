@@ -1,0 +1,71 @@
+\chapter{Steuerung des Programmablaufs}
+\section{Konstanten - Boolesche Werte}
+\begin{tabular}{ll}
+\texttt{True}	&wahr\\
+\texttt{False}	&falsch\\
+\texttt{None}	&undefiniert\\
+\end{tabular}
+\section{Objekt- vs. Wertevergleich}
+\begin{lstlisting}
+#Eindeutige ID des Objekts (Referenz)
+id(object1)
+
+#Identitaetsvergleich (kein Vergleich des Inhalts, sondern der Referenz)
+object1 is object2
+object1 is not object2
+
+#Zuweisung auf selbe Referenz
+object1 = 1
+object2 = 2
+object1 = object2
+object1 is object2 #True
+
+#Wertvergleich
+object2 = 3
+object1 == object2 #False
+
+\end{lstlisting}
+
+\section{Boolesche Operatoren}
+Diese Operatoren haben die niedrgste Priorität aller bis jetzt vorgestellten Operatoren.\\[0.5em]
+\begin{tabular}{ll}
+\texttt{or}		&Logisches Oder\\
+\texttt{and}	&Logisches Und\\
+\texttt{not}	&Logische Negation\\
+\end{tabular}
+\section{Bedingte Ausführung \texttt{if}}
+\begin{lstlisting}
+a = 42
+
+#Einfache if-Abfrage
+if a == 42:
+	print(a)
+	
+#Mehrere Bedingungen
+if a == 0:
+	print(''0'')
+elif a > 0:
+	print(a)
+else:
+	print(''kleiner'')
+\end{lstlisting}
+\section{Objektabhängige Ausführung \texttt{with}}
+Mit dem \texttt{with}-Statement wird ein Block abhängig von einem Context ausgeführt. Der Context wird durch ein Objekt dargestellt. Es werden Methoden gestellt, die zu Beginn und Ende des Blocks ausgeführt werden.
+\begin{lstlisting}
+with expression [as variable]:
+    with-block
+\end{lstlisting}
+\section{Bedingter Ausdruck}
+Ternärer Operator als Platzersparnis im Gegensatz zu einer vollständigen If-Anweisung.
+\begin{lstlisting}
+#Binaerer Ausdruck
+if True:
+   1
+else:
+   0
+
+#Ternaerer Ausdruck
+1 if True else 0
+
+
+\end{lstlisting}

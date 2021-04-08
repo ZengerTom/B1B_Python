@@ -1,0 +1,90 @@
+\chapter{NumPy - Numerical Python}
+\section{Arrays}
+Die zentrale Datenstruktur in NumPy ist das mehrdimensionale Array. Es ist ein mehrdimensionaler Container für homogene Daten (Ein Datentyp gilt für das gesamte Array).
+\begin{lstlisting}
+import numpy as np
+
+a = np.zeros(3)		#([0., 0., 0.])
+type(a)			#numpy.ndarray
+
+b = array([1, 2, 3, 4, 5])
+
+c = np.arange(5)	#gleichverteilte Werte
+c[1] = 9.7		#Konvertierung zu Int-Wert (9)
+c = c*0.5		#Konvertierung dtype=float
+
+d = np.arange(5, dtype=np.float)    #array([0., 1., 2., 3., 4.])
+e = np.arange(3,5,0.5)		    #array([3., 3.5, 4., 4.5])
+f = np.linspace(1, 10, 3)	    #array([1., 5.5, 10.])
+
+g = np.array([[1, 2],	#2-dimensionales Array
+	      [3, 4],
+	      [5, 6]])		
+g.shape			#Zeilen und Spalten(3,2)
+
+h = np.arange(12).reshape(4,3)	    #2D
+i = np.arange(24).reshape(2,3,4)    #3D
+
+\end{lstlisting}
+\section{Array Indexing}
+\begin{lstlisting}
+import numpy as np
+a = np.linspace(1, 2, 5)
+a[0]		#1
+a[0:2]	#[1, 1.25]
+a[-1]		#2.
+
+b = np.array([[1, 2], [3, 4]])
+b[0,0]	#1
+b[1, 1]	#4
+b[0,:]	#[1, 2]
+\end{lstlisting}
+\section{Reshaping Arrays}
+\begin{lstlisting}
+import numpy as np
+
+a = array([0, 1, 2, 3, 4, 5])
+a = np.arange(6).reshape(3,2)	    #2D Reshaping
+				    #3D (Plane, Rows, Cols)
+array ([[1, 2],
+	[3, 4],
+	[5, 6]])	
+\end{lstlisting}
+\section{Array I/O}
+\begin{lstlisting}
+import numpy as np
+
+arr =  np.array([[0, 1, 2, 3] [4, 5, 6]])
+
+np.savetxt(fname='array_out.txt', X=arr, fmt=%d)
+
+loaded_arr = np.loadtxt(fname='arr_out.txt')
+\end{lstlisting}
+\section{Array Methoden}
+\begin{tabular}{lp{4cm}lp{4cm}}
+\texttt{a.copy()}		&Kopie		&\texttt{a.argmax()}		&Index des Maximum\\
+\texttt{a.sort()}		&Sortieren	&\texttt{a.cumsum()}	&Kumulative Summe\\
+\texttt{a.sum()}		&Summe		&\texttt{a.cumprod()}	&Kumulatives Produkt\\
+\texttt{a.mean()}	&Durchschnitt	&\texttt{a.var()}			&Varianz\\
+\texttt{a.min()}		&Minimum	&\texttt{a.std()}			&Standardabweichung\\
+\texttt{a.max()}		&Maximum	&\texttt{a.transpose()}	&Transponierte Matrix\\
+\end{tabular}\\[0.5em]
+\begin{tabular}{lp{10cm}}
+\texttt{a.searchsorted()}	&Index des ersten Wertes der $\geq$ der Variable ist\\
+\texttt{np.random.rand(3,2)}	&Array mit zufälligen Werten \& gegebenen Shape\\
+\texttt{np.random.randint(2, size=10)}	&Array mit zufäligen Int-Werten\\
+\end{tabular}
+\section{Array Operations}
+\begin{lstlisting}
+import numpy as np
+
+a = np.arange(1, 6, 1)
+b = np.arange(1, 6, 1)
+
+c = a + b 		#[2, 4, 6, 8, 10]
+d = a * b 		#[1, 4, 9, 16, 25]
+e = a ** b 		#[1, 4, 27, 256, 3125]
+f = a + 1		#[2, 3, 4, 5, 6]
+
+\end{lstlisting}
+

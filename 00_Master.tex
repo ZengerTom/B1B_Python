@@ -1,0 +1,145 @@
+%Dokumentklasse
+\documentclass[a4paper, ngerman, 12pt]{scrreprt}
+
+%Seitenränder
+\usepackage[top = 2.5 cm, left= 3.5cm, right = 2.5cm, bottom = 3 cm]{geometry}
+
+%Zeilenabstand
+%\usepackage[onehalfspacing]{setspace}
+
+% ==== Packages ====
+
+%Dokumentinformationen
+\usepackage[
+	pdftitle={},
+	pdfsubject={},
+	pdfauthor={Thomas Zenger},
+	pdfkeywords={},	
+	%Rahmen von Links verbergen
+	hidelinks
+]{hyperref}
+
+
+%Standard Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{babel}
+\usepackage{color, colortbl}
+\usepackage{graphicx, subfig}
+
+\usepackage{textcomp}
+\usepackage{listings}
+
+\usepackage{amssymb} 
+\usepackage{mathtools}
+
+\usepackage{fancyhdr}
+
+%nicht einrücken nach Absatz
+\setlength{\parindent}{0pt}
+
+%Farben
+\definecolor{lstback}{RGB}{240, 240, 240}
+\definecolor{darkgreen}{RGB}{0, 100, 0}
+\definecolor{dgreen}{RGB}{219, 169, 1}
+\definecolor{Gray}{gray}{0.9}
+
+%Codelisings - Sprache angeben
+\lstset{
+	language=python,
+	numbers=left,
+	stepnumber=1,
+	frame=single,
+	captionpos=b,
+	backgroundcolor=\color{lstback},
+	breaklines=true,
+	commentstyle=\color{green},
+	keywordstyle=\color{blue} \textbf,
+	identifierstyle=\color{black},
+	stringstyle=\color{darkgreen}\ttfamily,
+	basicstyle = \ttfamily \color{black} \footnotesize,
+	inputencoding=utf8,
+	showstringspaces=false,
+	escapeinside={@}{@}
+}
+
+%Trennung
+%\hyphenation()
+
+%Redefine
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ==== Kopf- und Fußzeile ====
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{}
+\chead{}
+\rhead{\leftmark}
+%%
+\lfoot{Thomas Zenger}
+\cfoot{}
+\rfoot{\thepage}
+%%
+
+
+
+\begin{document}
+
+%Titelseite
+\begin{titlepage}
+\begin{center}
+\vspace*{3cm}
+\huge\textbf{\texttt{B1B}}\\
+\vspace{1cm}
+{\fontsize{50}{48} \selectfont Back in Business}\\
+\vspace{0.5em}
+%Thematik
+{\fontsize{40}{48} \selectfont Python}\\
+\end{center}
+\vspace{\fill}
+%Author
+\begin{large}
+Thomas Zenger\\
+mail@thomas-zenger.de\\
+\today\\
+\end{large}
+\vspace{2cm}
+\end{titlepage}
+
+
+\pagestyle{fancy}
+%Inhaltsverzeichnis
+\tableofcontents
+%Verzeichnis aller Bilder
+%\listoffigures
+%Verzeichnis aller Tabellen
+%\listoftables
+%Verzeichnis aller Code Listings
+%\lstlistoflistings
+
+
+%Teildokumente einfügen
+\pagestyle{fancy}
+\input{01_Vorwort.tex}
+\input{02_Allgemeines.tex}
+\input{03_Variablen.tex}
+\input{04_Datentypen.tex}
+\input{05_Steuerung.tex}
+\input{06_Schleifen.tex}
+\input{07_Funktionen.tex}
+\input{08_Funktionales.tex}
+\input{09_Files.tex}
+\input{10_Fehlerbehandlung.tex}
+\input{11_Objekte.tex}
+\input{12_Weiterfuehrendes.tex}
+\input{13_NumPy.tex}
+\input{14_Pandas.tex}
+\input{15_MatPlotLib.tex}
+%\input{}
+
+\input{100_Changelog.tex}
+\end{document}
+

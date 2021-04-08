@@ -1,0 +1,195 @@
+\chapter{Objekttypen}
+Alle Datentypen sind Objekte. Mit dem Typ sind Funktionen verknüpft (Objektmethoden).
+\begin{lstlisting}
+#Methodenaufruf
+objekt.methode()
+\end{lstlisting}
+\section{Zahlen}
+\begin{lstlisting}
+ganzzahl = 42 #int
+langezahl = 43218932549085324908
+fliesskomma1 = 3.12 #float
+fliesskomma2 = 8.12e+10
+komplex = 1+2j #complex
+\end{lstlisting}
+\textbf{Besonderheiten}
+\begin{itemize}
+\item Ganze Zahlen können Werte über den gültigen Speicherbereich annehmen
+\item Ganze Zahlen haben keine Begrenzung bei der Genauigkeit
+\item Angabe von Ganzen Zahlen kann auch binär, oktal oder hexadezimal erfolgen (Präfixe: \texttt{0b}, \texttt{0o}, \texttt{0x})
+\end{itemize}
+\subsection{Arithmetische Operatoren}
+\begin{tabular}{lp{4cm}lp{6cm}}
+\texttt{+}	&Addition	&\texttt{abs(x)}	&absoluter Wert\\
+\texttt{-}	&Subtraktion	&\texttt{int(x)}	&erzeugt Ganzzahl\\
+\texttt{*}	&Multiplikation	&\texttt{float(x)}	&erzeugt Fließkommazahl\\
+\texttt{/}	&Division	&\texttt{complex(x)}	&erzeugt komplexe Zahl\\
+\texttt{//}	&Ganzzahldivision	&\texttt{divmod(x)}	&Ganzzahl- \& Modulodivision\\
+\texttt{\%}	&Modulo	&\texttt{pow(x, y)}	&Potenzieren\\
+\texttt{-}	&Negation	&\texttt{x ** y}	&Potenzieren\\
+\texttt{+}	&unveränderter Wert	&	&
+\end{tabular}
+\subsection{Bit-Operatoren}
+\begin{tabular}{lp{4cm}lp{6cm}}
+\texttt{a $\mid$ b}	&ODER	&\texttt{a $\ll$ b}	&n Bit nach links\\
+\texttt{a \^{} b}	&XOR	&\texttt{a $\gg$ b}	&n Bit nach rechts\\
+\texttt{a \& b}	&UND	&\texttt{$\sim$a}	&Bitkomplement\\
+\end{tabular}
+\subsection{Vergleichsoperatoren, Boolsche Operatoren}
+\begin{tabular}{lp{4cm}lp{6cm}}
+\texttt{a $<$ b}	&kleiner	&\texttt{a $>=$ b}	&größer gleich\\
+\texttt{a $<=$ b}	&kleiner gleich	&\texttt{a $==$ b}	&gleich\\
+\texttt{a $>$ b}	&größer	&\texttt{a $!=$b}	&ungleich\\
+\texttt{AND}	&UND	&\texttt{OR}	&ODER\\
+\texttt{NOT}	&NICHT
+\end{tabular}
+\subsection{Kurzschreibweise}
+\begin{lstlisting}
+a += b
+\end{lstlisting}
+\section{Zeichenketten}
+Python speichert Zeichenketten als einzelne Zeichen innerhalb eines String-Objekts mit UTF-8. Ein Typ für ein einzelnes Zeichen ist nicht vorhanden, alle Zeichenketten gehören der Klasse \texttt{str} an. Zeichenketten sind unveränderlich, alle Aktionen liefern eine neue Zeichenkette.
+\begin{lstlisting}
+#Gleichwertig, einfaches und doppeltes Anfuhrungszeichen ohne Escapen
+s = 'hello'
+
+s = ''hello''
+
+#Multiline String
+s = '''hello
+... world
+...'''
+\end{lstlisting}
+\section{Listen}
+Eine Liste ist eine geordnete Sammlung von Objekten. Eine Liste kann beliebige Objekte enthalten und ist veränderbar.
+\begin{lstlisting}
+#leere Liste
+liste = []
+
+#Liste mit Lange n
+liste = [n]
+
+#direkte Zuweisung
+liste = [1, 3.14, ''hello'']
+\end{lstlisting}
+\section{Tupel}
+Tupel sind wie Listen eine geordnete Sammlung von Objekten. Im Gegensatz zur Liste sind Tupel nicht veränderbar
+\begin{lstlisting}
+#leeres Tupel
+tupel = ()
+
+#direkte Zuweisung
+tupel = (1, 2, 3)
+
+#Ein-Element-Tupel
+tupel = (1,)
+\end{lstlisting}
+\section{Range}
+Ein Bereichstyp zur Erzeugung von unveränderbaren Zahlenlisten. Es können bis zu drei Parameter bei der Erzeugung angegeben werden (Startwert, Endwert, Schrittweite). Standardstartwert ist 0.
+\begin{lstlisting}
+list(range(1, 10, 2)
+
+r = range(10)
+\end{lstlisting}
+\section{Operationen auf Sequenztypen}
+Gemeinsamer Satz von Operationen und Funktionen für Objekte des Typs Strings, Listen, Tupel und Range.
+\subsection{Index-Zugriff}
+\begin{itemize}
+\item Abfrage erfolgt über Index (Nur bei Liste: Zuweisung)
+\item Index beginnt mit 0
+\item Letztes Element hat den Index Länge - 1
+\item Negativer Index: Es wird ab Ende der Sequenz gezählt
+\end{itemize}
+\subsection{Slicing}
+\begin{lstlisting}
+list = [1, 2, 3, 4, 5, 6]
+
+#Extrahieren Teilstuck druch Index, Ende exklusiv
+list[start:ende:schrittweite]
+
+#Loeschen eines Listenbereichs
+list[start:ende] = []
+\end{lstlisting}
+\subsection{weitere Funktionen}
+\begin{lstlisting}
+''hallo'' + ''welt'' 	#''hallo welt''
+''hallo'' * 2		#''hallo hallo''
+s = ''hallo''
+''ll'' in s		#true
+''oo'' not in s		#true
+len(s)			#5
+s.index('a')		#1
+min(s)			#Minimum ' '
+max(s)			#Maximum 'o'
+s.count('s')		#2
+\end{lstlisting}
+\section{Dictionarys}
+Der Typ \texttt{dict} ist eine Sammlung von Schlüssel-Wert-Paaren, wobei der Schlüssel unveränderlich ist. Es existiert keine definierte Reihenfolge, ein Zugriff über einen Index ist somit nicht möglich.
+\subsection{Deklaration}
+\begin{lstlisting}
+d = {}
+d = {'key1' : 'wert1', 'key2' : 'wert2', 'key2' : 'wert2', }
+\end{lstlisting}
+\subsection{Zugriff, Zuweisung, Löschen}
+Vor dem Zugriff sollte man überprüfen, ob der Schlüssel enthalten ist (\texttt{in}).
+\begin{lstlisting}
+'key1' in d
+
+#Zugriff
+d['key1']
+
+#Zuweisung
+d['key1'] = 42
+
+#Entfernen Key und Value
+del d['key1']
+\end{lstlisting}
+\subsection{Operationen}
+\begin{lstlisting}
+#Erweitern
+d.update(d2)
+
+#Alle Keys bzw. Werte
+d.keys()
+d.values()
+
+#Alle Paare
+d.items()
+\end{lstlisting}
+Die Methoden liefern ein Objekt welches mit der List-Mehtode in eine Liste umgewandelt werden kann (\texttt{list(d.values()}).
+\section{Set und Frozenset}
+Veränderbare Menge von unveränderbaren Objekten, welche mathematische Mengenoperationen beherrscht. Kein Index, Sortierung und Slicing.  Zusätzlich arbeitet das Frozenset wie ein Dictionary und kann nicht verändert werden.
+\begin{lstlisting}
+s = {1, 2, 'a', 3.14}
+s.add('=')
+s.remove(2)
+2 in s
+len(s)
+\end{lstlisting}
+\subsection{Mengenoperationen}
+\begin{tabular}{lp{4cm}p{6cm}}
+\textbf{Operator}	&\textbf{Methode}	&\textbf{Funktion}\\
+$<=$		&issubset			&Untermenge\\
+$>=$		&issuperset		&Obermenge\\
+$\mid$	&union			&Vereinigungsmenge\\
+\&		&intersection		&Schnittmenge\\
+$-$		&difference		&Differenzmenge\\
+\texttt{ \^{} }	&symmetric\_difference	&Differenz mit einmaligen Werten
+\end{tabular}
+\section{Erzeugung von Listen, Sets und Dictionarys}
+Außer der expliziten Deklaration steht den Objekten der Typen list, set  und dict die Erzeugung durch eine Schleife zur Verfügung (``List Comprehension'' bzw. ``Display'').
+\begin{lstlisting}
+#Explizite Erzeugung
+l = ['a', 'b', 'c']
+s = {1, 2, 3}
+d = {'a' : 1, 'b' : 2}
+
+#Allgemeine Form
+<Ausdruck> for <Schleifenvariable> in <Sequenz> <Test>
+
+#List
+l = [x for x in rage(10, 15)]
+s = {x / 2 for x in range(5) if x % 2 == 0}
+d = {x : y for x, y in enumerate(l)}
+\end{lstlisting}
+

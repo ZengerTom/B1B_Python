@@ -1,0 +1,26 @@
+\chapter{Fehlerbehandlung}
+\section{Fehler abfangen \texttt{try ... except}}
+\begin{lstlisting}
+try:
+	#do sth
+	
+#einen Fehler abfangen
+except KeyboardInterrupt as err:
+    print(''{}''.format(error))
+	
+#Verschiedene Fehler abfangen
+except (TypeError, SyntaxError):
+
+#alle Fehler abfangen
+except:
+    pass
+
+#nach try weiter ohne Fehler
+else:
+    #Anweisungen, die keinen Fehler ausloesen koennen
+    
+finally:
+    #Vor Beendigung ausfuehren
+\end{lstlisting}
+\section{Exception auslösen}
+Eine Exception kann mit dem Schlüsselwort \texttt{raise} ausgelöst werden. Nach dem Schlüsselwort wird die gewünschte Exception und ggfls. Parameter in Klammern angegeben.

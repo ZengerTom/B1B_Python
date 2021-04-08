@@ -1,0 +1,43 @@
+\chapter{Schleifen}
+\section{Zählschleife \texttt{for}}
+Durchläuft alle Elemente eines Objekts. Bei einem Dictionary wird der key zurückgeliefert. Die Rückgabe der Schlüsselwerte erfolgt nicht in der Reihenfolge, in der das Dictionary initialisiert wurde (erzwingbar mit \texttt{sorted()}).
+\begin{lstlisting}
+for a in ''Hello'':
+	print(a)		#H e l l o
+
+#Dictionary Zugriff Mehrfachzuweisung
+d = {'1' : 4, '2' : 8, '3' : 16}
+for a, b in d.items():
+	print(a, b)
+	
+#Range und (optional) Schleifenende
+for n in range(3):
+	print(n)
+else:
+	print(''Ende'')
+\end{lstlisting}
+Der Endteil kann mit der \texttt{break}-Anweisung unterbunden werden.
+\section{Bedingte Schleife \texttt{while}}
+Bedingung wird vor jeder Ausführung geprüft.
+\begin{lstlisting}
+i = 0
+while i < 10:
+	i += 1
+#optional
+else:
+	print(''Ende'')
+\end{lstlisting}
+\section{Unterbrechung und Neustart}
+\begin{lstlisting}
+#Abbruch der Schleife
+for n in range(10):
+	if n == 2:
+	   break
+	print(n)
+	
+#neue Iteration
+for n in range(10):
+	if n % 2 == 0:
+		continue
+	print(n)
+\end{lstlisting}

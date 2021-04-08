@@ -1,0 +1,24 @@
+\chapter{Funktionales}
+\section{Lambda Funktionen}
+EIne Lambda Funktion ist eine Funktion ohne Namen und mit nur einem Ausdruck. Default Werte und variable Parameter können genutzt werden.
+\begin{lstlisting}
+add = lambda x,y : x+y
+add(1, 2)
+\end{lstlisting}
+\section{Funktionen auf Sequenzen ausführen \texttt{map()}}
+Funktion benötigt zwei Argumente (Funktion und Sequenz-Objekt). Das Ergebnis ist ein Iterator
+\begin{lstlisting}
+i = map(lambda v : v * v, rage(5))
+\end{lstlisting}
+\section{Daten aus Sequenz extrahieren \texttt{filter()}}
+Wie der \texttt{map()}-Funktion wird der \texttt{filter()}-Funktion eine Funktion und eine Sequenz zugewiesen.
+\begin{lstlisting}
+filter (lambda x: x == 25, list)
+\end{lstlisting}
+\section{\texttt{reduce()}}
+Die Funktion \texttt{reduce()} wendet die gegebene Funktion auf die ersten zwei Werte der Sequenz an. Existiert nur noch ein Wert, wird dieser zurückgegeben.
+\begin{lstlisting}
+data = [47,11,42,13]
+functools.reduce(lambda x,y: x+y, data) #113
+\end{lstlisting}
+

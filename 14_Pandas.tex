@@ -1,0 +1,161 @@
+\chapter{Pandas - Python and data analysis}
+Pandas ist ein Python-Modul zur Daten Manipulation und Analyse. Die Bibliothek baut auf Numpy auf. Scipy und Matplotlib stellen eine sinnvolle Ergänzung zu Pandas da.
+\section{Datenstrukturen}
+\subsection{Series}
+Eine Series ist ähnlich dem eindimensionalen Array. Ein Array fungiert hierbei als Index (Label), in einem weiteren Array werden die Daten gespeichert (Werte).
+\begin{lstlisting}
+import pandas as pd
+import numpy as np
+
+s = pd.Series([10, 20, 30, 40, 50])
+
+#Indizies umbennen
+s.index = ['START', 'QUARTER', 'HALF', 'THREE-QUARTER', 'ENDE']
+
+#Series mit bestimmten Index erstellen
+ind = ['START', 'QUARTER', 'HALF', 'THREE-QUARTER', 'ENDE']
+t = pd.Series([100, 200, 300, 400, 500], index=t )
+
+#Zugriff Index
+s['START']
+
+#Informationen zu Series
+s.describe()
+\end{lstlisting}
+\subsection{Data Frame}
+Ein Data Frame besitzt einen Zeilen- und einen Spaltenindex. Es ist vergleichbar mit einem Dictionary aus Series mit einem normalen Index. Jede Series wird über einen Index (Name de Spalte) angesprochen. Bei den meisten Operationen wird eine Kopie des Data Frames erzeugt und nicht der Data Frame selbst geändert.
+\begin{lstlisting}
+import pandas as pd
+import numpy as np
+
+years = range(2014, 2018)
+a = pd.Series([10.1, 10.2, 10.3, 10.4], index=years)
+b = pd.Series([20.1, 20.2, 20.3, 20.4], index=years)
+c = pd.Series([30.1, 30.2, 30.3, 30.4], index=years)
+
+#Series aneinanderreihen (hintereinander)
+d = pd.concat([a, b, c])
+
+#Data Frame erzeugen aus Series
+df = pd.concat([a, b, c], axis=1)
+
+#Spaltennamen
+df.columns				#Ausgabe der Range
+shops_df.columns.values		#Ausgabe der Werte
+
+df.columns = ['a', 'b', 'c']		#Spaltennamen umbenennen
+
+#Spaltennamen vor Konkatenierung angeben
+a.name = 'a_new'
+b.name = 'b_new'
+c.name = 'c_new'
+
+#Zugriff auf Spalte durch Indizierung
+df['a','b']
+print(df.a)
+
+#Zugriff auf bestimmte Reihen
+df[0:2]
+df.loc[2017]		#liefert Ergebnis als Series
+df.loc[[2016, 2017]]	#liefert Ergebnis als Data Frame
+
+#Zugriff auf Reihen und Spalten
+df[0:2, ['a', 'b']]
+
+#Bedingter Zugriff
+df[df.a > 10]
+
+#Spalten umbenennen
+df2 = df.rename(columns={'a'='alt'})
+
+#Reihen umsortieren
+df.reindex(index=[2017, 2016, 2015, 2014])
+\end{lstlisting}
+\subsubsection{Fehlende Werte}
+\begin{lstlisting}
+#Reihen mit fehlende Werte entfernen
+df.dropna()
+
+#Fehlende werte ersetzen
+df.fillna()
+\end{lstlisting}
+\section{Map and Apply}
+\subsection{Map}
+\begin{lstlisting}
+#Elementweise auf Serie
+df['str'].dropna().map(lambda x : 'map_' + x)
+\end{lstlisting}
+\subsection{Apply}
+\begin{lstlisting}
+#Arbeitet auf Spalten-/Reihenbasis (axis=0 rows, axis=1 cols)
+f = lambda x : x +1
+df.apply(f, axis=0)
+\end{lstlisting}
+\subsection{Applymap}
+\begin{lstlisting}
+#Elementweise
+f = lambda x : x +1
+df.applymap(f)
+\end{lstlisting}
+\section{Vectorized Operations}
+\begin{lstlisting}
+df = pd.DataFrame(data={"A":[1,2], "B":[4,5]})
+df["C"] = df["A"]+df["B"]
+\end{lstlisting}
+\section{Groupings}
+\begin{lstlisting}
+#erzeugt Objekt
+ef = df.groupby('Spaltenname')
+
+#Anzeigen pro Gruppierungselement
+ef.size()
+
+#Funktionen sind anwendbar
+ef.A.sum()
+\end{lstlisting}
+\section{Pandas Stats}
+\begin{lstlisting}
+#Statistik zum Data frame
+df.describe()
+
+#Kovarianz
+df.cov()
+
+#Korrelation
+df.corr()
+\end{lstlisting}
+\section{Merge und Join}
+\subsection{Left Join}
+nur Keys des linken Frame
+\begin{lstlisting}
+pd.merge(left_frame, right_frame, on='key', how='left')
+\end{lstlisting}
+\subsection{Right Join}
+nur Keys des rechten Frame
+\begin{lstlisting}
+pd.merge(left_frame, right_frame, on='key', how='right')
+\end{lstlisting}
+\subsection{Outer Join}
+Full Join, alle Keys, falls Key in einem Frame nicht vorhanden NaN
+\begin{lstlisting}
+pd.merge(left_frame, right_frame, on='key', how='left')
+\end{lstlisting}
+\subsection{Inner Join}
+Intersection beider Frames (nur Keys, die in beiden Frames vorhanden)
+\begin{lstlisting}
+pd.merge(left_frame, right_frame, on='key', how='left')
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
